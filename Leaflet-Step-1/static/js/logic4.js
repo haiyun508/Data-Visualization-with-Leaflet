@@ -50,13 +50,6 @@ d3.json(link).then(function (data) {
     var limits=[-10,10,30,50,70,90]
     labels=[]
   
-    // var legendInfo = "<h1>Median Income</h1>" +
-    //   "<div class=\"labels\">" +
-    //   "<div class=\"min\">" + limits[0] + "</div>" +
-    //   "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-    //   "</div>";
-
-    // div.innerHTML = legendInfo;
     limits.forEach(function (limit, index) {
       labels.push("<li style=\"background-color: " + myColor(limit) + "\"></li>");
       labels.push("<p>"+categories[index]+"</p>");
