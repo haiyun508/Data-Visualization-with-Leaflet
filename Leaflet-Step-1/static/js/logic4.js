@@ -25,12 +25,12 @@ d3.json(link).then(function (data) {
 
     // loop each feature, grab coordinates and magnitude for each earthquake
   data.features.forEach(feature => {
-    var lan = feature.geometry.coordinates[0]
+    var lon = feature.geometry.coordinates[0]
     var lat = feature.geometry.coordinates[1]
     var magnitude = feature.properties.mag
-    latlan = [lat, lan]
+    latlon = [lat, lon]
     // create circles with Popup
-    L.circle(latlan, {
+    L.circle(latlon, {
       color: "#8D8A8A",
       weight: 1,
       opacity: 0.3,
@@ -38,8 +38,10 @@ d3.json(link).then(function (data) {
       fillOpacity: 0.95,
       // Setting our circle's radius proportionate to its magnitude
       radius: magnitude * 10000
-    }).bindPopup("<h1>" + feature.properties.place + "</h1> <hr> <h3>Magnitude: " + feature.properties.mag + "<br>" + lan + "</h3>").addTo(myMap);
-  })
+    }).bindPopup("<h1>" + feature.properties.place + "</h1> <hr> <h3>Magnitude: " + feature.properties.mag + 
+    "</h3><br><a href=\"" + feature.properties.url + "\">More info From USGS</a>").addTo(myMap)    
+  });
+  // "<li style=\"background-color: " + colors[index] + "\"></li>"
  
   // Set up the legend
   var legend = L.control({ position: 'bottomright' });
