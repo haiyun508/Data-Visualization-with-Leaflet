@@ -67,23 +67,23 @@ d3.json(link).then(function (data) {
   var earthquakes = L.layerGroup(circles)
 
 
-  link2="https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
-  d3.json(link).then(function (data) {
-    console.log(data)})
+  // link2="https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
+  // d3.json(link).then(function (data) {
+  //   console.log(data)})
 
-// Create the faultline layer
-var faultLine = new L.LayerGroup();
-// Query to retrieve the faultline data
-var faultlinequery = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
+// // Create the faultline layer
+// var faultLine = new L.LayerGroup();
+// // Query to retrieve the faultline data
+// var faultlinequery = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
   
-// Create the faultlines and add them to the faultline layer
-d3.json(faultlinequery, function(data) {
-  L.geoJSON(data, {
-    style: function() {
-      return {color: "red", fillOpacity: 0}
-    }
-  }).addTo(faultLine)
-})
+// // Create the faultlines and add them to the faultline layer
+// d3.json(faultlinequery, function(data) {
+//   L.geoJSON(data, {
+//     style: function() {
+//       return {color: "red", fillOpacity: 0}
+//     }
+//   }).addTo(faultLine)
+// })
 
 
 
@@ -99,7 +99,7 @@ d3.json(faultlinequery, function(data) {
 
   var overlayMaps = {
     "earthquakes": earthquakes,
-    "faultLine":faultLine
+    // "faultLine":faultLine
 
   }
 
