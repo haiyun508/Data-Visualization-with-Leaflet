@@ -38,7 +38,6 @@ d3.json(link).then(function (data) {
   console.log(circles)
 
 
-
   // Adding tile layer
   var Satellite = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
@@ -66,6 +65,31 @@ d3.json(link).then(function (data) {
     accessToken: API_KEY
   });
   var earthquakes = L.layerGroup(circles)
+
+
+  link2="https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
+  d3.json(link).then(function (data) {
+    console.log(data)})
+
+// Create the faultline layer
+var faultLine = new L.LayerGroup();
+// Query to retrieve the faultline data
+var faultlinequery = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
+  
+// Create the faultlines and add them to the faultline layer
+d3.json(faultlinequery, function(data) {
+  L.geoJSON(data, {
+    style: function() {
+      return {color: "red", fillOpacity: 0}
+    }
+  }).addTo(faultLine)
+})
+
+
+
+
+
+
   // Define a baseMaps object to hold our base layers
   var baseMaps = {
     "Satellite": Satellite,
@@ -74,7 +98,9 @@ d3.json(link).then(function (data) {
   };
 
   var overlayMaps = {
-    "earthquakes": earthquakes
+    "earthquakes": earthquakes,
+    "faultLine":faultLine
+
   }
 
   // Create a new map
